@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Coach</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 p-8 font-sans">
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        
+        <!-- System Diagnostics Panel -->
+        <div id="diagnostic-panel" class="mb-6"></div>
+
+        <h1 class="text-3xl font-bold text-blue-900 mb-2">AI Interview Coach Pro</h1>
+        <p class="text-gray-600 mb-6">Real-time SVO and communication analysis.</p>
+
+        <div class="flex gap-4 mb-6">
+            <input type="text" id="userName" placeholder="Enter Your Name" class="border p-2 rounded flex-1">
+            <button onclick="showLeaderboard()" class="bg-gray-800 text-white px-4 py-2 rounded">Leaderboard</button>
+        </div>
+
+        <div class="flex gap-4 mb-6">
+            <select id="modeSelect" class="border p-2 rounded flex-1">
+                <option value="interview">Interview Question</option>
+                <option value="topic">Random Topic</option>
+                <option value="word">Random Word</option>
+            </select>
+            <select id="difficultySelect" class="border p-2 rounded flex-1">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hardcore">Hardcore</option>
+            </select>
+            <button onclick="fetchQuestion()" class="bg-blue-600 text-white px-4 py-2 rounded">Refresh Prompt</button>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg mb-6 text-center min-h-[100px] flex items-center justify-center">
+            <h2 id="questionDisplay" class="text-xl font-semibold text-blue-900">Click "Refresh Prompt" to begin.</h2>
+        </div>
+
+        <div class="flex gap-4 justify-center mb-6">
+            <button id="startBtn" onclick="startRecording()" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold shadow hover:bg-green-700">Start Speaking</button>
+            <button id="stopBtn" onclick="stopRecording()" class="bg-red-600 text-white px-6 py-3 rounded-full font-bold shadow hover:bg-red-700 hidden">Stop & Evaluate</button>
+        </div>
+
+        <div class="mb-6">
+            <h3 class="font-bold text-gray-700 mb-2">Live Transcript:</h3>
+            <div id="transcript" class="w-full h-32 border p-4 rounded bg-gray-50 overflow-y-auto text-gray-800"></div>
+        </div>
+
+        <div id="resultsPanel" class="hidden border-t pt-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Assessment Results</h3>
+            <div id="ragStatus" class="text-xl font-bold p-3 rounded mb-4 text-center"></div>
+            <div id="scoreDisplay" class="text-lg font-semibold mb-2"></div>
+            <div id="aiFeedback" class="text-gray-700 whitespace-pre-wrap bg-gray-100 p-4 rounded"></div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg w-96 relative">
+            <h2 class="text-2xl font-bold mb-4">Top 5 Scores</h2>
+            <ul id="leaderboardList" class="mb-6 space-y-2"></ul>
+            <button onclick="closeLeaderboard()" class="w-full bg-gray-800 text-white py-2 rounded">Close</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,7 +1,0 @@
-{
-  "name": "genc-eval-trainer",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "echo 'Static build ready'"
-  }
-}

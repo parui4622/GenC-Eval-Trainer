@@ -1,6 +1,11 @@
 {
+  "functions": {
+    "api/generate.js": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/generate" },
+    { "source": "/api/(.*)", "destination": "/api/generate.js" },
     { "source": "/((?!api/).*)", "destination": "/coach.html" }
   ]
 }

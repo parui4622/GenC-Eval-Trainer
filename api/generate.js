@@ -7,18 +7,19 @@ export default async function handler(req, res) {
     const API_KEY = rawKey ? rawKey.trim() : null;
 
     if (!API_KEY) {
-        console.error("Missing GEMINI_API_KEY environment variable.");
-        return res.status(500).json({ error: "Missing GEMINI_API_KEY on server." });
+        console.error("Diagnostic: API Key is missing or empty.");
+        return res.status(500).json({ error: "Missing API key in Vercel environment." });
     }
 
-    const GOOGLE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+    // DIFFERENT APPROACH: Passing the API key strictly as a URL query parameter
+    const GOOGLE_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
     try {
         const response = await fetch(GOOGLE_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'x-goog-api-key': API_KEY
+                // Notice: No authorization headers here anymore
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(req.body)
         });
@@ -26,15 +27,12 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         if (!response.ok) {
-            console.error("Google API rejected request:", JSON.stringify(data));
-            return res.status(response.status).json({ 
-                error: data.error?.message || "Google rejected request with status " + response.status 
-            });
+            console.error("Google API Error:", JSON.stringify(data));
+            return res.status(response.status).json(data);
         }
 
         return res.status(200).json(data);
     } catch (error) {
-        console.error("Fetch failure:", error.message);
-        return res.status(500).json({ error: "Failed to reach Google API: " + error.message });
+        return res.status(500).json({ error: "Network failure: " + error.message });
     }
 }

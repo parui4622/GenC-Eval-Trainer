@@ -5,7 +5,6 @@ export default async function handler(req, res) {
 
     // const rawKey = process.env.GEMINI_API_KEY;
     const rawKey = AQ.Ab8RN6KXDRpwbZwrS6yKYHZcoWh-iQ29L7cXRQn-A20-t_YuSA;
-    const rawKey = ;
     const API_KEY = rawKey ? rawKey.trim() : null;
 
     if (!API_KEY) {

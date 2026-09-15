@@ -1,4 +1,4 @@
-# AI Interview Coach Pro
+# AI Interview Coach Pro (GenC-Eval-Trainer)
 
 Real-time Subject-Verb-Object (SVO) analysis, extempore speech coaching, and structured corporate communication assessment powered by Google Gemini 1.5 Flash.
 
@@ -6,11 +6,68 @@ Real-time Subject-Verb-Object (SVO) analysis, extempore speech coaching, and str
 
 ## 📌 Overview
 
-**AI Interview Coach Pro** is an interactive web application designed to help candidates prepare for corporate interviews and extempore speaking evaluations. It provides:
-- **Dynamic Prompt Generation**: Configurable modes for technical interview questions, extempore topics, and vocabulary concept prompts across multiple difficulty levels.
-- **Real-Time Speech Transcription**: Captures verbal responses directly via the Web Speech API.
-- **Automated SVO & Communication Assessment**: Evaluates sentence structure, detects run-on statements, assesses completeness, and delivers RAG (Red-Amber-Green) status ratings with analytical feedback.
-- **Session Leaderboard**: Tracks top candidate scores locally across sessions.
+**AI Interview Coach Pro** is an automated speech evaluation and communication calibration platform designed specifically for campus graduates, lateral hires, and corporate training programs. By combining real-time browser speech recognition with large language model evaluation, the platform diagnoses syntactic structure, evaluates coherence, detects run-on statements, and delivers actionable feedback in real time.
+
+---
+
+## 🌟 Core Features
+
+- **Multi-Modal Prompt Engine**:
+  - **Technical Interview Questions**: Dynamic developer questions across *Easy*, *Medium*, and *Hardcore* tiers.
+  - **Extempore Speech Topics**: Generates 1-minute impromptu topics to assess quick thinking and articulation under pressure.
+  - **Concept/Vocabulary Drills**: Generates targeted English nouns and abstract concepts for focused fluency drills.
+  - Unique seed randomization prevents question repetition during training drills.
+
+- **Real-Time Speech-to-Text Transcription**:
+  - Direct microphone integration leveraging the browser's native Web Speech API (`SpeechRecognition`).
+  - Real-time interim visual feedback with final sentence aggregation.
+
+- **Automated SVO & Communication Analysis**:
+  - **Subject-Verb-Object (SVO) Structure**: Enforces direct, concise professional phrasing and flags fragmented thoughts.
+  - **Run-on & Conjunction Detection**: Flags excessive conjunction chaining (e.g., "and then... and so... because...").
+  - **Completeness Check**: Penalizes trailing thoughts and unfinished answers.
+
+- **RAG (Red-Amber-Green) Readiness Scoring**:
+  - **GREEN**: Production-ready, client-facing communication.
+  - **AMBER**: Understandable but requires pacing, conciseness, or grammatical polishing.
+  - **RED**: Major syntactic breakdown, run-ons, or incomplete thoughts requiring remediation.
+  - Quantitative 0–100 scoring with bulleted analytical feedback.
+
+- **Session Leaderboard**:
+  - Tracks top-5 performances locally using session storage to foster healthy competition and self-improvement during practice sessions.
+
+- **Enterprise Reliability & Diagnostics**:
+  - Built-in runtime diagnostic banner verifying browser speech capabilities and storage availability.
+  - Strict Content-Type inspection preventing cryptic HTML/JSON parsing failures.
+  - Secure serverless & local proxying to ensure zero client-side API key exposure.
+
+---
+
+## 💼 Business Perspective: Cognizant & Enterprise Talent Supply Chain
+
+### 1. The Cognizant GenC Context
+**GenC (Generation Cognizant)** is Cognizant's flagship entry-level hiring and onboarding engine, recruiting tens of thousands of engineering graduates annually across digital technologies, cloud services, software engineering, and consulting. 
+
+In enterprise IT services, technical acumen alone is insufficient. Client-facing engineers must communicate technical solutions clearly, succinctly, and confidently across global stakeholders.
+
+### 2. The Business Challenge in Campus Recruitment & L&D
+- **Interviewer Fatigue & Inconsistency**: Senior engineers and managers dedicate thousands of billable hours conducting preliminary communication rounds, where evaluations are often subjective and inconsistent.
+- **The "Bench-to-Billing" Delay**: Fresh graduates with strong coding skills often languish on the unbilled bench for weeks due to failing client communication interviews, increasing overhead costs.
+- **High Remediation Costs**: Identifying communication bottlenecks *after* onboarding is expensive. Without objective early diagnostics, Learning & Development (L&D) teams cannot deliver targeted coaching.
+
+### 3. Strategic Value & ROI for Cognizant
+| Business Metric | Traditional Model | With GenC-Eval-Trainer |
+| :--- | :--- | :--- |
+| **Preliminary Screening Cost** | High (senior engineer billable hours) | **Near-Zero** (automated self-service AI evaluation) |
+| **Evaluation Objectivity** | Variable (subjective to interviewer bias) | **Standardized** (algorithmic SVO rubrics) |
+| **Bench Time Reduction** | Extended communication polishing cycles | **Accelerated** (targeted pre-boarding calibration) |
+| **Candidate Throughput** | Limited by interviewer calendar availability | **Unlimited** (concurrent 24/7 self-paced drills) |
+| **Feedback Latency** | Days or weeks after panel reviews | **Instantaneous (< 2 seconds)** |
+
+### 4. Enterprise Use Cases
+- **Campus Placement Drives (Pre-Hire)**: Automated round-zero filtering to assess candidate spoken English, fluency, and thought structure before allocating technical panels.
+- **Cognizant Academy (L&D Onboarding)**: Integrated into foundation training sprints, enabling trainees to complete daily extempore and behavioral modules.
+- **Internal Talent Mobility & Client Readiness (Shadow-to-Billable)**: Benchmark engineers rolling off internal projects to ensure immediate client interview readiness.
 
 ---
 
@@ -99,7 +156,7 @@ The repository is preconfigured for zero-config Vercel serverless deployments.
 Ensure your code is pushed to your Git repository:
 ```bash
 git add .
-git commit -m "Configure dual-environment setup for Vercel and local dev"
+git commit -m "Update project documentation and features"
 git push origin main
 ```
 
@@ -131,5 +188,5 @@ Vercel automatically detects `index.html` as the static entry point and deploys 
 ## 🔮 Future Enhancements
 
 - **Speech Recognition Enhancements**: Add optional audio capture with cloud-based speech-to-text fallback (e.g., Whisper API) for non-Chromium browsers.
-- **Advanced Prompt Calibrations**: Include industry-specific question banks (finance, system design, HR behavioral) and rubric calibrations for SVO grammatical depth.
-- **Historical Analytics**: Persist user evaluation metrics, progress graphs, and audio replay capabilities across practice sessions.
+- **Advanced Prompt Calibrations**: Include industry-specific question banks (banking/BFSI, healthcare, cloud architecture) aligned with Cognizant business units.
+- **Historical Analytics & LMS Integration**: Export candidate scores directly to enterprise LMS platforms (e.g., Degreed, Canvas, Cognizant Academy portals).

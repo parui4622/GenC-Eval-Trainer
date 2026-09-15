@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     }
 
     const rawKey = process.env.GEMINI_API_KEY;
-    const apiKey = typeof rawKey === 'string' ? rawKey.trim() : '';
+    const apiKey = typeof rawKey === 'string' ? rawKey.trim().replace(/^["']|["'];?$|;$/g, '') : '';
 
     if (!apiKey) {
         console.error("[Vercel Serverless] Error: GEMINI_API_KEY is missing or empty.");

@@ -87,12 +87,21 @@ async function fetchQuestion() {
             },
             body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
         });
+
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+            const textResponse = await response.text();
+            console.error("Server returned non-JSON response:", textResponse);
+            throw new Error("Server returned HTML instead of JSON. Are you on the correct port? Ensure you are accessing http://localhost:3000 (do not use Live Server on port 5500).");
+        }
         
         const data = await response.json();
         
         if (data.error) {
             console.error("API Error Object:", data.error);
-            display.innerHTML = `<span class="text-red-600 font-bold">API Error ${data.error.code}:</span> ${data.error.message}`;
+            const errCode = data.error.code ? `API Error ${data.error.code}:` : "API Error:";
+            const errMsg = data.error.message || (typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
+            display.innerHTML = `<span class="text-red-600 font-bold">${errCode}</span> ${errMsg}`;
             return;
         }
 
@@ -103,7 +112,7 @@ async function fetchQuestion() {
         }
         
     } catch (error) {
-        display.innerHTML = `<span class="text-red-600 font-bold">Network/Routing Error:</span> Check the console for details. Ensure your Node.js server is running.`;
+        display.innerHTML = `<span class="text-red-600 font-bold">Network/Routing Error:</span> ${error.message || 'Check the console for details. Ensure your Node.js server is running.'}`;
         console.error("Fetch Exception:", error);
     }
 }
@@ -182,10 +191,18 @@ async function evaluateResponse() {
             },
             body: JSON.stringify({ contents: [{ parts: [{ text: evaluationPrompt }] }] })
         });
+
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+            const textResponse = await response.text();
+            console.error("Server returned non-JSON response:", textResponse);
+            throw new Error("Server returned HTML instead of JSON. Ensure you are accessing http://localhost:3000 and not VS Code Live Server.");
+        }
+
         const data = await response.json();
         
         if (data.error) {
-            document.getElementById('aiFeedback').innerText = `API Error: ${data.error.message}`;
+            document.getElementById('aiFeedback').innerText = `API Error: ${data.error.message || JSON.stringify(data.error)}`;
             return;
         }
 
@@ -204,8 +221,8 @@ async function evaluateResponse() {
         saveToLeaderboard(result.score);
 
     } catch (error) {
-        document.getElementById('aiFeedback').innerText = "Evaluation failed to parse. Try again.";
-        console.error(error);
+        document.getElementById('aiFeedback').innerText = error.message || "Evaluation failed to parse. Try again.";
+        console.error("Evaluation Exception:", error);
     }
 }
 

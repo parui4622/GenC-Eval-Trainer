@@ -1,0 +1,14 @@
+{
+  "name": "genc-eval-trainer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.local.js",
+    "build": "echo 'Static build ready'"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
